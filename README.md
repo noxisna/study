@@ -1,3 +1,1 @@
-# study
-
-우리 스터디 목표: 깃 협업 익히기
+# study - noxisna의 깃 연습장
