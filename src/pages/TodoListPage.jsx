@@ -25,9 +25,17 @@ function TodoListPage() {
 
     setTodoList([...todoList, newTodo]);
     setInputText("");
+  }; // ← handleAdd 끝!
+
+  // 🆕 handleAdd가 끝난 "다음"에 따로 만들기
+  const handleKeyDown = (e) => {
+    if (e.nativeEvent.isComposing) return;
+
+    if (e.key === "Enter") {
+      handleAdd();
+    }
   };
 
-  // 🆕 삭제 버튼을 누르면 실행되는 함수
   const handleDelete = (id) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   };
@@ -43,6 +51,7 @@ function TodoListPage() {
           placeholder="할 일을 입력하세요"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={handleKeyDown} // 🆕 원래 입력창에 한 줄만 추가
         />
         <button className="todo-add-btn" onClick={handleAdd}>
           추가
@@ -60,7 +69,6 @@ function TodoListPage() {
             <span className={todo.done ? "todo-text done" : "todo-text"}>
               {todo.text}
             </span>
-            {/* 🆕 삭제 버튼 */}
             <button
               className="todo-delete-btn"
               onClick={() => handleDelete(todo.id)}
