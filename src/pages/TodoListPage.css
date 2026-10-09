@@ -41,3 +41,51 @@
   text-decoration: line-through;
   color: #aaa;
 }
+
+/* 입력창 + 버튼 한 줄 */
+.todo-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: #8b7cf6;
+}
+
+.todo-add-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #8b7cf6;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.todo-add-btn:hover {
+  background-color: #7463e8;
+}
+
+/* 삭제 버튼 */
+.todo-delete-btn {
+  margin-left: auto;   /* 오른쪽 끝으로 밀기 */
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.todo-delete-btn:hover {
+  opacity: 1;
+}

@@ -4,7 +4,7 @@ import "./TodoListPage.css";
 
 function TodoListPage() {
   const [todoList, setTodoList] = useState(todos);
-  const [inputText, setInputText] = useState(""); // 🆕 입력창 글자
+  const [inputText, setInputText] = useState("");
 
   const handleToggle = (id) => {
     setTodoList(
@@ -14,25 +14,28 @@ function TodoListPage() {
     );
   };
 
-  // 🆕 추가 버튼을 누르면 실행되는 함수
   const handleAdd = () => {
-    if (inputText.trim() === "") return; // 빈칸이면 추가 안 함
+    if (inputText.trim() === "") return;
 
     const newTodo = {
-      id: Date.now(),      // 지금 시간을 숫자로 → 겹치지 않는 번호
+      id: Date.now(),
       text: inputText,
       done: false,
     };
 
     setTodoList([...todoList, newTodo]);
-    setInputText(""); // 추가 후 입력창 비우기
+    setInputText("");
+  };
+
+  // 🆕 삭제 버튼을 누르면 실행되는 함수
+  const handleDelete = (id) => {
+    setTodoList(todoList.filter((todo) => todo.id !== id));
   };
 
   return (
     <div className="todo-container">
       <h2 className="todo-title">📓 할 일 목록</h2>
 
-      {/* 🆕 입력창 + 추가 버튼 */}
       <div className="todo-form">
         <input
           type="text"
@@ -57,6 +60,13 @@ function TodoListPage() {
             <span className={todo.done ? "todo-text done" : "todo-text"}>
               {todo.text}
             </span>
+            {/* 🆕 삭제 버튼 */}
+            <button
+              className="todo-delete-btn"
+              onClick={() => handleDelete(todo.id)}
+            >
+              🗑️
+            </button>
           </li>
         ))}
       </ul>
