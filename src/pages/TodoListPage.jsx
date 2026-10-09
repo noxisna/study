@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { todos } from "../mocks/Todos";
 import "./TodoListPage.css";
 
 function TodoListPage() {
-  const [todoList, setTodoList] = useState(todos);
+  const [todoList, setTodoList] = useState(()=>{
+    const saved = localStorage.getItem("todoList");
+    return saved ? JSON.parse(saved) : todos;
+  });
   const [inputText, setInputText] = useState("");
+  
+useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
+
 
   const handleToggle = (id) => {
     setTodoList(
