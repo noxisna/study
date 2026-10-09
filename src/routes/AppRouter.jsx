@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage'
-import ProgramListPage from '../pages/ProgramListPage'
+import TodoListPage from "../pages/TodoListPage";
 
 function AppRouter() {
   return (
@@ -8,7 +8,7 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/programs" element={<ProgramListPage />} />
+        <Route path="/todos" element={<TodoListPage />} />   {/* 11번 줄 */}
       </Routes>
     </BrowserRouter>
   )
