@@ -1,0 +1,43 @@
+/* 전체 카드 상자 */
+.todo-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #f5f2ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* 제목 */
+.todo-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* 목록 */
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* 할 일 한 줄 */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 마우스 올렸을 때 */
+.todo-item:hover {
+  background-color: #f7f7f7;
+}
+
+/* 완료한 할 일 */
+.todo-text.done {
+  text-decoration: line-through;
+  color: #aaa;
+}

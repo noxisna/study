@@ -1,15 +1,18 @@
 import { todos } from "../mocks/Todos";
+import "./TodoListPage.css";
 
 function TodoListPage() {
   return (
-    <div>
-      <h2>📓할 일 목록</h2>
+    <div className="todo-container">
+      <h2 className="todo-title">📓 할 일 목록</h2>
 
-      <ul>
+      <ul className="todo-list">
         {todos.map((todo) => (
-          <li key={todo.id}>
+          <li key={todo.id} className="todo-item">
             <input type="checkbox" checked={todo.done} readOnly />
-            {todo.text}
+            <span className={todo.done ? "todo-text done" : "todo-text"}>
+              {todo.text}
+            </span>
           </li>
         ))}
       </ul>
