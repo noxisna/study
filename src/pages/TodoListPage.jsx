@@ -14,6 +14,7 @@ function TodoListPage() {
    }, [todoList]);
 
   const [inputText, setInputText] =useState("");
+  const [filter, setFilter] = useState("all");
   const handleAdd = () => {
     if (inputText.trim() === "") return;
 
@@ -45,6 +46,12 @@ function TodoListPage() {
     }
   };
 
+  const filteredList = todoList.filter((todo) => {
+    if (filter === "done") return todo.done;
+    if (filter === "active") return !todo.done;
+    return true;
+  });
+
   
 
   return (
@@ -62,9 +69,29 @@ function TodoListPage() {
         />
         <button className="todo-add-btn" onClick={handleAdd}>추가</button>
       </div>
+      <div className="filter-bar">
+        <button
+          className={filter === "all" ? "filter-btn active" : "filter-btn"}
+          onClick={() => setFilter("all")}
+        >
+          전체
+        </button>
+        <button
+          className={filter === "done" ? "filter-btn active" : "filter-btn"}
+          onClick={() => setFilter("done")}
+        >
+          완료
+        </button>
+        <button
+          className={filter === "active" ? "filter-btn active" : "filter-btn"}
+          onClick={() => setFilter("active")}
+        >
+          미완료
+        </button>
+      </div>
 
       <ul className="todo-list">
-        {todoList.map((todo) => (
+        {filteredList.map((todo) => (
           <li key={todo.id} className="todo-item">
              <input type="checkbox" checked={todo.done} onChange={ () => handleToggle(todo.id) }/>
              <span className={todo.done ? "todo-text done" : "todo-text"}>{todo.text}</span>
