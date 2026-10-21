@@ -16,6 +16,8 @@ function TodoListPage() {
 
   const [inputText, setInputText] =useState("");
   const [filter, setFilter] = useState("all");
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState("");
   const handleAdd = () => {
     if (inputText.trim() === "") return;
 
@@ -47,6 +49,39 @@ function TodoListPage() {
     }
   };
 
+  const handleEditStart = (todo) => {
+    setEditingId(todo.id);
+    setEditText(todo.text);
+  };
+
+  const handleEditSave = (id) => {
+    if (editText.trim() === "") return;
+
+    setTodoList(
+      todoList.map((todo) =>
+        todo.id === id ? {...todo, text: editText} : todo
+      )
+    );
+    setEditingId(null);
+    setEditText("");
+  };
+
+  const handleEditCancel = () => {
+    setEditingId(null);
+    setEditText("");
+  };
+
+  const handleEditKeyDown = (e, id) => {
+    if (e.nativeEvent.isComposing) return;
+
+    if (e.key === "Enter") {
+      handleEditSave(id);
+    }
+    if (e.key === "Escape") {
+      handleEditCancel();
+    }
+};
+
   const filteredList = todoList.filter((todo) => {
     if (filter === "done") return todo.done;
     if (filter === "active") return !todo.done;
@@ -75,8 +110,27 @@ function TodoListPage() {
       <ul className="todo-list">
         {filteredList.map((todo) => (
           <li key={todo.id} className="todo-item">
-             <input type="checkbox" checked={todo.done} onChange={ () => handleToggle(todo.id) }/>
-             <span className={todo.done ? "todo-text done" : "todo-text"}>{todo.text}</span>
+             <input type="checkbox" checked={todo.done} onChange={() => handleToggle(todo.id) }/>
+        
+             {editingId === todo.id ? (
+              
+              <input
+              type="text"
+              className="todo-edit-input"
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              onKeyDown={(e) => handleEditKeyDown(e, todo.id)}
+              autoFocus
+              />
+             
+            ) : (
+             <span 
+              className={todo.done ? "todo-text done" : "todo-text"}
+              onDoubleClick={() => handleEditStart(todo)}
+            >
+              {todo.text}
+            </span>
+             )}
              <button className="todo-delete-btn" onClick={() => handleDelete(todo.id)}>🗑️</button>
           </li>
         ))}
