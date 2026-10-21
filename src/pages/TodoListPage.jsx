@@ -72,7 +72,6 @@ function TodoListPage() {
   };
 
   const handleEditKeyDown = (e, id) => {
-    console.log("키 입력:", e.key, "조합중:", e.nativeEvent.isComposing);
     if (e.nativeEvent.isComposing) return;
 
     if (e.key === "Enter") {
