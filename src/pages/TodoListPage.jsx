@@ -3,6 +3,7 @@ import { todos } from "../mocks/todos";
 import { useEffect } from "react";
 import "./TodoListPage.css";
 import FilterBar from "../components/FilterBar";
+import TodoForm from "../components/TodoForm";
 
 function TodoListPage() {
   const [todoList, setTodoList] = useState(()=> {
@@ -94,17 +95,7 @@ function TodoListPage() {
     <div className="todo-container">
       <h2 className="todo-title">📓 할 일 목록</h2>
       
-      <div className="todo-form">
-        <input 
-        type="text" 
-        className="todo-input" 
-        placeholder="할 일을 입력하세요"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)} 
-        onKeyDown={handleKeyDown}
-        />
-        <button className="todo-add-btn" onClick={handleAdd}>추가</button>
-      </div>
+      <TodoForm inputText={inputText} setInputText={setInputText} onAdd={handleAdd} />
       <FilterBar filter={filter} setFilter={setFilter}/>
 
       <ul className="todo-list">
