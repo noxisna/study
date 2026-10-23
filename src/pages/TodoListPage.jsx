@@ -6,6 +6,7 @@ import FilterBar from "../components/FilterBar";
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
 import TodoCount from "../components/TodoCount";
+import ClearDoneButton from "../components/ClearDoneButton";
 
 function TodoListPage() {
   const [todoList, setTodoList] = useState(()=> {
@@ -36,6 +37,12 @@ function TodoListPage() {
   const handleDelete = (id) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   };
+
+  const handleClearDone = () => {
+    setTodoList(todoList.filter((todo) => !todo.done));
+
+  };
+
 
   const handleToggle = (id) => {
     setTodoList(
@@ -83,7 +90,8 @@ function TodoListPage() {
     if (e.key === "Escape") {
       handleEditCancel();
     }
-};
+ };
+
 
   const filteredList = todoList.filter((todo) => {
     if (filter === "done") return todo.done;
@@ -108,9 +116,10 @@ function TodoListPage() {
         onToggle={handleToggle}
         onDelete={handleDelete}
         onEditStart={handleEditStart}
-        onEditKeydOwn={handleEditKeyDown}
+        onEditKeyDown={handleEditKeyDown}
         />
         <TodoCount count={remainingCount} />
+        <ClearDoneButton onClear={handleClearDone}/>
     </div>
   );
 }
