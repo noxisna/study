@@ -5,6 +5,7 @@ import "./TodoListPage.css";
 import FilterBar from "../components/FilterBar";
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
+import TodoCount from "../components/TodoCount";
 
 function TodoListPage() {
   const [todoList, setTodoList] = useState(()=> {
@@ -90,7 +91,7 @@ function TodoListPage() {
     return true;
   });
 
-  
+  const remainingCount = todoList.filter((todo) => !todo.done).length;
 
   return (
     <div className="todo-container">
@@ -109,6 +110,7 @@ function TodoListPage() {
         onEditStart={handleEditStart}
         onEditKeydOwn={handleEditKeyDown}
         />
+        <TodoCount count={remainingCount} />
     </div>
   );
 }
