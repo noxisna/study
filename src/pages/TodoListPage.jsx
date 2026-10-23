@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import "./TodoListPage.css";
 import FilterBar from "../components/FilterBar";
 import TodoForm from "../components/TodoForm";
+import TodoItem from "../components/TodoItem";
 
 function TodoListPage() {
   const [todoList, setTodoList] = useState(()=> {
@@ -100,30 +101,17 @@ function TodoListPage() {
 
       <ul className="todo-list">
         {filteredList.map((todo) => (
-          <li key={todo.id} className="todo-item">
-             <input type="checkbox" checked={todo.done} onChange={() => handleToggle(todo.id) }/>
-        
-             {editingId === todo.id ? (
-              
-              <input
-              type="text"
-              className="todo-edit-input"
-              value={editText}
-              onChange={(e) => setEditText(e.target.value)}
-              onKeyDown={(e) => handleEditKeyDown(e, todo.id)}
-              autoFocus
-              />
-             
-            ) : (
-             <span 
-              className={todo.done ? "todo-text done" : "todo-text"}
-              onDoubleClick={() => handleEditStart(todo)}
-            >
-              {todo.text}
-            </span>
-             )}
-             <button className="todo-delete-btn" onClick={() => handleDelete(todo.id)}>🗑️</button>
-          </li>
+          <TodoItem 
+          key={todo.id}
+          todo={todo}
+          editingId={editingId}
+          editText={editText}
+          setEditText={setEditText}
+          onToggle={handleToggle}
+          onDelete={handleDelete}
+          onEditStart={handleEditStart}
+          onEditKeyDown={handleEditKeyDown}
+          />
         ))}
       </ul>
     </div>
