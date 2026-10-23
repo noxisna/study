@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import "./TodoListPage.css";
 import FilterBar from "../components/FilterBar";
 import TodoForm from "../components/TodoForm";
-import TodoItem from "../components/TodoItem";
+import TodoList from "../components/TodoList";
 
 function TodoListPage() {
   const [todoList, setTodoList] = useState(()=> {
@@ -99,21 +99,16 @@ function TodoListPage() {
       <TodoForm inputText={inputText} setInputText={setInputText} onAdd={handleAdd} />
       <FilterBar filter={filter} setFilter={setFilter}/>
 
-      <ul className="todo-list">
-        {filteredList.map((todo) => (
-          <TodoItem 
-          key={todo.id}
-          todo={todo}
-          editingId={editingId}
-          editText={editText}
-          setEditText={setEditText}
-          onToggle={handleToggle}
-          onDelete={handleDelete}
-          onEditStart={handleEditStart}
-          onEditKeyDown={handleEditKeyDown}
-          />
-        ))}
-      </ul>
+      <TodoList
+        todos={filteredList}
+        editingId={editingId}
+        editText={editText}
+        setEditText={setEditText}
+        onToggle={handleToggle}
+        onDelete={handleDelete}
+        onEditStart={handleEditStart}
+        onEditKeydOwn={handleEditKeyDown}
+        />
     </div>
   );
 }
