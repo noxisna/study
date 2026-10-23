@@ -135,3 +135,20 @@
   font-size: 14;
   color: #777;
 }
+
+/* 완료 항목 모두 삭제 버튼 */
+.clear-done-btn{
+  margin-top: 8px;
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  color: #e5484d;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.clear-done-btn:hover{
+  background-color: #fff0f0;
+  border-color: #e5484d;
+}
