@@ -5,14 +5,24 @@ function LoginPage() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const hanldeLogin = () => {
-    navigate('/todos');
+    if (id.trim() === "" || password.trim() === "") {
+      setError("아이디와 비밀번호를 입력해 주세요."); 
+      return;
+    }
+    
+    setError("");
+    navigate("/todos");
   };
+
+  
   
   return (
     <div>
       <h2>로그인</h2>
+      {error && <p className="login-error">{error}</p>}
       <input 
         type="text"
         placeholder="아이디"
