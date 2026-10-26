@@ -7,6 +7,7 @@ import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
 import TodoCount from "../components/TodoCount";
 import ClearDoneButton from "../components/ClearDoneButton";
+import { useNavigate } from "react-router-dom";
 
 function TodoListPage() {
   const [todoList, setTodoList] = useState(()=> {
@@ -43,6 +44,12 @@ function TodoListPage() {
 
   };
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
+  };
 
   const handleToggle = (id) => {
     setTodoList(
@@ -97,7 +104,7 @@ function TodoListPage() {
   return (
     <div className="todo-container">
       <h2 className="todo-title">📓 할 일 목록</h2>
-      
+      <button className="logout-btn" onClick={handleLogout}>로그아웃</button>
       <TodoForm inputText={inputText} setInputText={setInputText} onAdd={handleAdd} />
       <FilterBar filter={filter} setFilter={setFilter}/>
 
