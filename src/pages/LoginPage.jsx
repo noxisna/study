@@ -12,9 +12,9 @@ function LoginPage() {
       setError("아이디와 비밀번호를 입력해 주세요."); 
       return;
     }
-    
-    setError("");
-    navigate("/todos");
+  setError("");
+  localStorage.setItem("isLoggedIn", "true");
+  navigate("/todos");
   };
 
   
