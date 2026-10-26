@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { todos } from "../mocks/todos";
-import { useEffect } from "react";
 import "./TodoListPage.css";
 import FilterBar from "../components/FilterBar";
 import TodoForm from "../components/TodoForm";
@@ -8,17 +7,10 @@ import TodoList from "../components/TodoList";
 import TodoCount from "../components/TodoCount";
 import ClearDoneButton from "../components/ClearDoneButton";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function TodoListPage() {
-  const [todoList, setTodoList] = useState(()=> {
-    const saved = localStorage.getItem("todoList");
-    return saved ? JSON.parse(saved) : todos;
-   });
-
-   useEffect(() => {
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-   }, [todoList]);
-
+  const [todoList, setTodoList] = useLocalStorage("todoList", todos);
   const [inputText, setInputText] =useState("");
   const [filter, setFilter] = useState("all");
   const [editingId, setEditingId] = useState(null);
@@ -65,6 +57,7 @@ function TodoListPage() {
   };
 
   const handleEditSave = (id) => {
+    console.log("저장 함수 실행", editText);
     if (editText.trim() === "") return;
 
     setTodoList(
@@ -82,6 +75,7 @@ function TodoListPage() {
   };
 
   const handleEditKeyDown = (e, id) => {
+    console.log("키 입력:", e.key);
     if (e.nativeEvent.isComposing) return;
 
     if (e.key === "Enter") {
