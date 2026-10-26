@@ -8,7 +8,7 @@ function TodoList ({
     onToggle,
     onDelete,
     onEditStart,
-    onEditKeydOwn,
+    onEditKeyDown,
 }) {
     return(
         <ul className="todo-list">
@@ -22,7 +22,7 @@ function TodoList ({
                     onToggle={onToggle}
                     onDelete={onDelete}
                     onEditStart={onEditStart}
-                    onEditKeyDown={onEditKeydOwn}
+                    onEditKeyDown={onEditKeyDown}
                 />
             ))}
         </ul>
