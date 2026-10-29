@@ -13,6 +13,7 @@ function TodoListPage() {
   const [todoList, setTodoList] = useLocalStorage("todoList", todos);
   const [inputText, setInputText] =useState("");
   const [dueDate, setDueDate] = useState("");
+  const [theme, setTheme] = useLocalStorage("theme","light");
   const [filter, setFilter] = useState("all");
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
@@ -45,7 +46,11 @@ function TodoListPage() {
     localStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
+  
+  const handleThemeToggle =() => {
+    setTheme(theme === "light"? "dark" : "light");
 
+  }
   const handleToggle = (id) => {
     setTodoList(
       todoList.map((todo) => 
@@ -99,8 +104,11 @@ function TodoListPage() {
   const remainingCount = todoList.filter((todo) => !todo.done).length;
 
   return (
-    <div className="todo-container">
+    <div className={theme === "dark" ? "todo-container dark" : "todo-container"}>
       <h2 className="todo-title">📓 할 일 목록</h2>
+      <button className="theme-btn" onClick={handleThemeToggle}>
+        {theme === "dark"? "☀️" : "🌙"}
+      </button>
       <button className="logout-btn" onClick={handleLogout}>로그아웃</button>
       <TodoForm
         inputText={inputText}

@@ -181,3 +181,68 @@
   color: #dc2626;
   font-weight: 700;
 }
+
+/* 다크 모드 토글 버튼 */
+.theme-btn {
+  display: block;
+  margin: 0 0 8px auto;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  border-color: #8b7cf6;
+  color: #8b7cf6;
+}
+
+/* ===== 다크 모드 ===== */
+.todo-container.dark {
+  background-color: #1f2937;
+  color: #f3f4f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.todo-container.dark .todo-title {
+  color: #f3f4f6;
+}
+
+.todo-container.dark .todo-input,
+.todo-container.dark .todo-edit-input,
+.todo-container.dark .todo-date-input {
+  background-color: #111827;
+  color: #f3f4f6;
+  border-color: #4b5563;
+}
+
+.todo-container.dark .filter-btn,
+.todo-container.dark .logout-btn,
+.todo-container.dark .theme-btn,
+.todo-container.dark .clear-done-btn {
+  background-color: #111827;
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+
+.todo-container.dark .filter-btn.active {
+  background-color: #8b7cf6;
+  border-color: #8b7cf6;
+  color: white;
+}
+
+.todo-container.dark .clear-done-btn {
+  color: #f87171;
+}
+
+.todo-container.dark .todo-count,
+.todo-container.dark .todo-due {
+  color: #9ca3af;
+}
+
+.todo-container.dark .todo-due.overdue {
+  color: #f87171;
+}
