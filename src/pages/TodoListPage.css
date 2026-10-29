@@ -170,3 +170,14 @@
   border-color: #8b7cf6;
   color: #8b7cf6;
 }
+
+.todo-due {
+  margin-left: 8px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.todo-due.overdue {
+  color: #dc2626;
+  font-weight: 700;
+}
