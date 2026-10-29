@@ -1,16 +1,27 @@
-# React + Vite
+# 📓 Todo List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React로 만든 할 일 관리 앱이에요. Git 협업을 연습하며 함께 만들었어요.
 
-Currently, two official plugins are available:
+## 🔗 배포 주소
+https://study-eight-ebon.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ 주요 기능
+- 가짜 로그인과 페이지 보호 (연습용)
+- 할 일 추가 / 수정 / 삭제 / 완료 체크
+- 필터 (전체 / 진행 중 / 완료)
+- 마감일 설정 (기한이 지나면 빨간색 표시)
+- 다크 모드
+- 새로고침해도 데이터 유지 (localStorage)
 
-## React Compiler
+## 🛠 사용 기술
+React, Vite, react-router-dom
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 실행 방법
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 👥 만든 사람
+- noxisna
+- susu804
