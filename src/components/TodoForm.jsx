@@ -1,4 +1,4 @@
-function TodoForm({ inputText, setInputText, onAdd}){
+function TodoForm({ inputText, setInputText, dueDate, setDueDate, onAdd}){
     const handleKeyDown = (e) => {
         if (e.nativeEvent.isComposing) return;
         if(e.key === "Enter"){
@@ -16,7 +16,13 @@ function TodoForm({ inputText, setInputText, onAdd}){
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={handleKeyDown}
             />
-            <button className="todo-add-btn" onClick={onAdd}>
+            <input
+             type="date"
+             className="todo-date-input"
+             value={dueDate}
+             onChange={(e) => setDueDate(e.target.value)}
+             />            
+             <button className="todo-add-btn" onClick={onAdd}>
                 추가
             </button>
         </div>

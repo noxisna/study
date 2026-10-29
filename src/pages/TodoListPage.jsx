@@ -12,6 +12,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 function TodoListPage() {
   const [todoList, setTodoList] = useLocalStorage("todoList", todos);
   const [inputText, setInputText] =useState("");
+  const [dueDate, setDueDate] = useState("");
   const [filter, setFilter] = useState("all");
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
@@ -22,9 +23,11 @@ function TodoListPage() {
       id: Date.now(),
       text: inputText,
       done: false,
+      dueDate: dueDate,
     };
     setTodoList([...todoList, newTodo]);
     setInputText("");
+    setDueDate("");
   };
 
   const handleDelete = (id) => {
@@ -99,7 +102,13 @@ function TodoListPage() {
     <div className="todo-container">
       <h2 className="todo-title">📓 할 일 목록</h2>
       <button className="logout-btn" onClick={handleLogout}>로그아웃</button>
-      <TodoForm inputText={inputText} setInputText={setInputText} onAdd={handleAdd} />
+      <TodoForm
+        inputText={inputText}
+        setInputText={setInputText}
+        dueDate={dueDate}
+        setDueDate={setDueDate}
+        onAdd={handleAdd}
+      />
       <FilterBar filter={filter} setFilter={setFilter}/>
 
       <TodoList

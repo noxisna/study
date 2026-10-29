@@ -8,7 +8,12 @@ function TodoItem({
     onEditStart,
     onEditKeyDown,
 }) {
+
+    const today = new Date().toLocaleDateString("sv-SE");
+    const isOverdue = todo.dueDate && todo.dueDate < today && !todo.done;
+
     return (
+
         <li className="todo item">
             <input
             type="checkbox"
@@ -31,6 +36,10 @@ function TodoItem({
             onDoubleClick={() => onEditStart(todo)}
             >
                 {todo.text}
+            </span>
+        )}{todo.dueDate && (
+            <span className={isOverdue ? "todo-due overdue" : "todo-due"}>
+                📅 {todo.dueDate}
             </span>
         )}
 
